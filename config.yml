@@ -1,0 +1,151 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/images"
+public_folder: "/assets/images"
+
+site_url: https://thefunders.ca
+logo_url: https://thefunders.ca/assets/logo.png
+
+# Authentication
+publish_mode: editorial_workflow
+
+# Collections
+collections:
+  - name: "site"
+    label: "Site Settings"
+    editor:
+      preview: false
+    files:
+      - file: "content/hero.md"
+        label: "Hero Section"
+        name: "hero"
+        fields:
+          - { label: "Headline", name: "headline", widget: "string", default: "Your Home, Your Future. We Make It Possible." }
+          - { label: "Subheadline", name: "subheadline", widget: "text", default: "The Funders is Canada's most trusted mortgage partner..." }
+          - { label: "Badge Text", name: "badge", widget: "string", default: "Rated 4.9/5 by 200+ Canadian Families" }
+          - { label: "Primary CTA", name: "cta_primary", widget: "string", default: "Check Your Rate — 2 Minutes" }
+          - { label: "Secondary CTA", name: "cta_secondary", widget: "string", default: "Watch Our Story" }
+          - { label: "Trust Text", name: "trust_text", widget: "string", default: "200+ families funded across Canada" }
+          - { label: "Current Rate", name: "rate", widget: "string", default: "4.89" }
+          - { label: "Rate Label", name: "rate_label", widget: "string", default: "Today's Best 5-Year Fixed" }
+          - { label: "Rate Note", name: "rate_note", widget: "string", default: "Insured • 25-year amortization" }
+          - { label: "Rate Hold CTA", name: "rate_cta", widget: "string", default: "Lock My Rate for 120 Days" }
+
+      - file: "content/niches.md"
+        label: "Niche Cards"
+        name: "niches"
+        fields:
+          - label: "Cards"
+            name: "cards"
+            widget: "list"
+            fields:
+              - { label: "Icon", name: "icon", widget: "string", default: "🔑" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Link Text", name: "link_text", widget: "string" }
+              - { label: "Link URL", name: "link_url", widget: "string" }
+
+      - file: "content/process.md"
+        label: "How It Works"
+        name: "process"
+        fields:
+          - label: "Steps"
+            name: "steps"
+            widget: "list"
+            fields:
+              - { label: "Step Number", name: "number", widget: "number", value_type: "int", min: 1, max: 10 }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+
+      - file: "content/cta.md"
+        label: "Final CTA"
+        name: "cta"
+        fields:
+          - { label: "Headline", name: "headline", widget: "string", default: "Ready to Stop Renting and Start Building Wealth?" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Button Text", name: "button_text", widget: "string", default: "Book Your Free Strategy Call" }
+          - { label: "Button URL", name: "button_url", widget: "string", default: "#" }
+          - { label: "Guarantee Text", name: "guarantee", widget: "string", default: "No obligation. No pressure. 100% confidential." }
+
+      - file: "content/footer.md"
+        label: "Footer"
+        name: "footer"
+        fields:
+          - { label: "Company Description", name: "description", widget: "text" }
+          - { label: "NMLS ID", name: "nmls", widget: "string", default: "123456" }
+          - { label: "Copyright", name: "copyright", widget: "string", default: "© 2026 The Funders. All rights reserved." }
+
+  - name: "testimonials"
+    label: "Testimonials"
+    folder: "content/testimonials"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Initial", name: "initial", widget: "string" }
+      - { label: "Role/Location", name: "role", widget: "string" }
+      - { label: "Quote", name: "quote", widget: "text" }
+      - { label: "Star Rating", name: "stars", widget: "number", value_type: "int", min: 1, max: 5, default: 5 }
+      - { label: "Featured", name: "featured", widget: "boolean", default: true }
+
+  - name: "team"
+    label: "Team Members"
+    folder: "content/team"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Initial", name: "initial", widget: "string" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Bio", name: "bio", widget: "text" }
+      - { label: "Photo", name: "photo", widget: "image", required: false }
+
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Featured Image", name: "image", widget: "image", required: false }
+      - { label: "Excerpt", name: "excerpt", widget: "text" }
+      - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        field: { label: "Tag", name: "tag", widget: "string" }
+
+  - name: "faq"
+    label: "FAQ Items"
+    folder: "content/faq"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Question", name: "question", widget: "string" }
+      - { label: "Answer", name: "answer", widget: "markdown" }
+      - { label: "Category", name: "category", widget: "select", options: ["First-Time Buyers", "Newcomers", "Women & Wealth", "General"] }
+
+  - name: "glossary"
+    label: "Glossary Terms"
+    folder: "content/glossary"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Term", name: "term", widget: "string" }
+      - { label: "Definition", name: "definition", widget: "text" }
+      - { label: "Full Explanation", name: "body", widget: "markdown", required: false }
+
+  - name: "guides"
+    label: "Downloadable Guides"
+    folder: "content/guides"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "PDF File", name: "pdf", widget: "file" }
+      - { label: "Cover Image", name: "cover", widget: "image", required: false }
+      - { label: "Lead Magnet", name: "lead_magnet", widget: "boolean", default: true, hint: "Requires email to download" }
